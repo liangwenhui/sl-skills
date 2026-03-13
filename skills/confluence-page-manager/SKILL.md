@@ -18,12 +18,13 @@ description: Read and write Confluence pages via REST API. Use when user asks to
 - `ATLASSIAN_API_TOKEN`
 
 ## Mandatory Config Bootstrap (Persistent)
-1. Check `ATLASSIAN_*` before any Confluence API call.
-2. If missing, ask user to provide missing values one by one.
-3. Persist config by running:
-   `skills/scripts/setup_atlassian_env.sh <base_url> <email> <api_token>`
-4. Continue automatically after persistence.
-5. Never print or repeat full token in response.
+1. First run check script: `skills/scripts/check_atlassian_env.sh`
+2. If check fails (non-zero exit), proceed with bootstrap:
+   - Ask user to provide missing values one by one.
+   - Persist config by running:
+     `skills/scripts/setup_atlassian_env.sh <base_url> <email> <api_token>`
+3. Continue automatically after persistence.
+4. Never print or repeat full token in response.
 
 ## Workflow
 1. Confirm `action` and required fields.

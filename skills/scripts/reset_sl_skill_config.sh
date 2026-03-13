@@ -64,22 +64,26 @@ new_email="$current_email"
 new_api_token="$current_api_token"
 new_bitbucket_token="$current_bitbucket_token"
 
-echo "Select config key to update:"
-echo "0) Save and exit"
-echo "1) ATLASSIAN_BASE_URL"
-echo "2) ATLASSIAN_EMAIL"
-echo "3) ATLASSIAN_API_TOKEN"
-echo "4) BITBUCKET_TOKEN"
-echo "5) Clear BITBUCKET_TOKEN"
+print_menu() {
+  echo "请选择要修改的配置项："
+  echo "- 0 保存退出"
+  echo "- 1 改 ATLASSIAN_BASE_URL"
+  echo "- 2 改 ATLASSIAN_EMAIL"
+  echo "- 3 改 ATLASSIAN_API_TOKEN"
+  echo "- 4 改 BITBUCKET_TOKEN"
+  echo "- 5 清空 BITBUCKET_TOKEN"
+}
 
 while true; do
+  echo
+  print_menu
   echo
   echo "Current values:"
   echo "- ATLASSIAN_BASE_URL: $(show_plain_value "$new_base_url")"
   echo "- ATLASSIAN_EMAIL: $(show_plain_value "$new_email")"
   echo "- ATLASSIAN_API_TOKEN: $(show_secret_status "$new_api_token")"
   echo "- BITBUCKET_TOKEN: $(show_secret_status "$new_bitbucket_token")"
-  read -r -p "Choose option [0-5]: " choice
+  read -r -p "输入选项 [0=保存退出,1=改ATLASSIAN_BASE_URL,2=改ATLASSIAN_EMAIL,3=改ATLASSIAN_API_TOKEN,4=改BITBUCKET_TOKEN,5=清空BITBUCKET_TOKEN]: " choice
 
   case "$choice" in
     1)

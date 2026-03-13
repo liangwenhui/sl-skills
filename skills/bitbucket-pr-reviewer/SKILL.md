@@ -22,12 +22,13 @@ Fallback order for token:
 - `ATLASSIAN_API_TOKEN`
 
 ## Mandatory Config Bootstrap (Persistent)
-1. Check effective Bitbucket credentials before API call.
-2. If missing, ask user to provide required values.
-3. Persist config by running:
-   `skills/scripts/setup_atlassian_env.sh <base_url> <email> <api_token> [bitbucket_token]`
-4. Continue automatically after persistence.
-5. Never print or repeat full token in response.
+1. First run check script: `skills/scripts/check_bitbucket_env.sh`
+2. If check fails (non-zero exit), proceed with bootstrap:
+   - Ask user to provide required values (ATLASSIAN_EMAIL + BITBUCKET_TOKEN).
+   - Persist config by running:
+     `skills/scripts/setup_atlassian_env.sh <base_url> <email> <api_token> [bitbucket_token]`
+3. Continue automatically after persistence.
+4. Never print or repeat full token in response.
 
 ## Workflow
 1. Validate `workspace`, `repo_slug`, and numeric `pr_id`.
