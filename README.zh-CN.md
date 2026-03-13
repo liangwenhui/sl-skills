@@ -5,7 +5,7 @@
 跨 Agent 通用的 Skill 仓库（Codex / Claude Code / OpenCode / OpenClaw）。
 
 ## 安装
-
+发给agent: 
 请从以下文档获取并执行安装步骤：
 https://github.com/liangwenhui/sl-skills/blob/main/INSTALL.md
 
