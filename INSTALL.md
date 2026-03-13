@@ -45,6 +45,50 @@ fi
 [ -f "$HOME/.atlassian_env" ] && source "$HOME/.atlassian_env"
 ```
 
+## Step -0.4: Grant Agent Permissions (Optional but Recommended)
+
+为了让 agent 能够顺利执行脚本，需要将以下路径添加到 agent 的权限配置中：
+
+```bash
+# 需要添加到 permissions.allow 的路径
+PERMISSION_PATHS=(
+  "$HOME/.atlassian_env"
+  "${CODEX_HOME:-$HOME/.codex}/skills"
+  "$HOME/.claude/skills"
+)
+
+# Claude Code: 添加到 ~/.claude/settings.json
+CLAUDE_SETTINGS="$HOME/.claude/settings.json"
+if [ -f "$CLAUDE_SETTINGS" ]; then
+  # 读取现有 permissions.allow（若不存在则为空数组）
+  EXISTING_ALLOW=$(jq -r '.permissions.allow // [] | join(" ")' "$CLAUDE_SETTINGS" 2>/dev/null || echo "")
+
+  for path in "${PERMISSION_PATHS[@]}"; do
+    # 检查是否已存在
+    if [[ ! "$EXISTING_ALLOW" == *"$path"* ]]; then
+      # 使用 jq 添加到数组
+      jq --arg path "$path" '.permissions.allow += [$path]' "$CLAUDE_SETTINGS" > /tmp/settings.json.tmp && mv /tmp/settings.json.tmp "$CLAUDE_SETTINGS"
+      echo "Added permission: $path"
+    else
+      echo "Already in permissions: $path"
+    fi
+  done
+fi
+
+# Codex: 添加到 ${CODEX_HOME:-$HOME/.codex}/config.json
+CODEX_CONFIG="${CODEX_HOME:-$HOME/.codex}/config.json"
+if [ -f "$CODEX_CONFIG" ]; then
+  for path in "${PERMISSION_PATHS[@]}"; do
+    if ! jq -e --arg path "$path" '.permissions.allow | if type == "array" then contains([$path]) else false end' "$CODEX_CONFIG" >/dev/null 2>&1; then
+      jq --arg path "$path" '.permissions.allow += [$path]' "$CODEX_CONFIG" > /tmp/codex_config.json.tmp && mv /tmp/codex_config.json.tmp "$CODEX_CONFIG"
+      echo "Added permission (Codex): $path"
+    fi
+  done
+fi
+```
+
+> **注意**：如果 agent 没有写权限，可以跳过此步骤，在需要时手动添加或让用户确认权限。
+
 ## Step 0: 先识别当前 Agent
 
 本仓库支持两种方式：
