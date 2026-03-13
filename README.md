@@ -4,8 +4,8 @@ English | [简体中文](./README.zh-CN.md)
 
 A cross-agent skill repository for Codex, Claude Code, OpenCode, and OpenClaw.
 
-## Installation
-
+## Installation 
+Tell your agent
 Fetch and follow instructions from:
 https://github.com/liangwenhui/sl-skills/blob/main/INSTALL.md
 
