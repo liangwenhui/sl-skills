@@ -1,20 +1,26 @@
 # INSTALL
 
-## Step -1: Clone Repo
+## Step -1: Idempotent Install / Update
 
-在开始前，先拉取仓库到本地：
-
-```bash
-git clone https://github.com/liangwenhui/sl-skills.git
-cd sl-skills
-```
-
-如果仓库已存在，先更新：
+使用下面这段命令安装（首次）或更新（再次执行）：
 
 ```bash
-cd sl-skills
-git pull --ff-only
+REPO_URL="https://github.com/liangwenhui/sl-skills.git"
+DEST_DIR="${DEST_DIR:-$HOME/.agent-skills/sl-skills}"
+
+mkdir -p "$(dirname "$DEST_DIR")"
+if [ -d "$DEST_DIR/.git" ]; then
+  git -C "$DEST_DIR" pull --ff-only
+else
+  git clone "$REPO_URL" "$DEST_DIR"
+fi
+
+cd "$DEST_DIR"
 ```
+
+说明：
+- 第一次执行：`git clone`
+- 之后重复执行：自动 `git pull --ff-only` 更新 skill
 
 ## Step 0: 先识别当前 Agent
 
