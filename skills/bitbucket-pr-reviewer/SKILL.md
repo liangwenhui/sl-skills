@@ -12,15 +12,20 @@ description: Review Bitbucket pull requests and post PR comments via Bitbucket A
 - `action`: `review` | `comment`
 - `comment` (required for `comment` action)
 
-## Required Environment (Single Config)
+## Required Environment
 - `ATLASSIAN_EMAIL`
+- `BITBUCKET_TOKEN` (recommended)
+
+Fallback order for token:
+- `BITBUCKET_TOKEN`
+- `BITBUCKET_APP_PASSWORD`
 - `ATLASSIAN_API_TOKEN`
 
 ## Mandatory Config Bootstrap (Persistent)
-1. Check `ATLASSIAN_*` before any Bitbucket API call.
-2. If missing, ask user to provide missing values one by one.
+1. Check effective Bitbucket credentials before API call.
+2. If missing, ask user to provide required values.
 3. Persist config by running:
-   `skills/scripts/setup_atlassian_env.sh <base_url> <email> <api_token>`
+   `skills/scripts/setup_atlassian_env.sh <base_url> <email> <api_token> [bitbucket_token]`
 4. Continue automatically after persistence.
 5. Never print or repeat full token in response.
 

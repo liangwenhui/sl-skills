@@ -35,7 +35,10 @@ if [ -z "${ATLASSIAN_BASE_URL:-}" ] || [ -z "${ATLASSIAN_EMAIL:-}" ] || [ -z "${
   read -r -s -p "ATLASSIAN_API_TOKEN: " ATLASSIAN_API_TOKEN
   echo
 
-  ./skills/scripts/setup_atlassian_env.sh "$ATLASSIAN_BASE_URL" "$ATLASSIAN_EMAIL" "$ATLASSIAN_API_TOKEN"
+  read -r -s -p "BITBUCKET_TOKEN (optional, press Enter to skip): " BITBUCKET_TOKEN
+  echo
+
+  ./skills/scripts/setup_atlassian_env.sh "$ATLASSIAN_BASE_URL" "$ATLASSIAN_EMAIL" "$ATLASSIAN_API_TOKEN" "$BITBUCKET_TOKEN"
 fi
 
 # load into current shell
