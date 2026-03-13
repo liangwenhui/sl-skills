@@ -12,40 +12,17 @@ description: Read and write Confluence pages via REST API. Use when user asks to
 - `space_key` (required for `create`)
 - `body_storage`: Confluence storage format body (required for `create` and `update`)
 
-## Environment Strategy
-Default shared Atlassian env (recommended first-time setup):
+## Required Environment (Single Config)
 - `ATLASSIAN_BASE_URL`
 - `ATLASSIAN_EMAIL`
 - `ATLASSIAN_API_TOKEN`
 
-Service-specific override (optional):
-- `CONFLUENCE_BASE_URL`
-- `CONFLUENCE_EMAIL`
-- `CONFLUENCE_API_TOKEN`
-
-Resolution order:
-- `CONFLUENCE_*` first; fallback to `ATLASSIAN_*`.
-
 ## Mandatory Config Bootstrap
-1. Check effective Confluence env before any API call.
-2. If missing, ask user to provide shared `ATLASSIAN_*` first.
+1. Check `ATLASSIAN_*` before any Confluence API call.
+2. If missing, ask user to provide missing values one by one.
 3. Configure env in current shell session, then continue automatically.
 4. Do not ask user to run commands manually unless user explicitly wants manual mode.
 5. Never print or repeat full token in response.
-
-Recommended first-time setup:
-```bash
-export ATLASSIAN_BASE_URL='https://your-domain.atlassian.net'
-export ATLASSIAN_EMAIL='name@company.com'
-export ATLASSIAN_API_TOKEN='***'
-```
-
-Optional Confluence-only override:
-```bash
-export CONFLUENCE_BASE_URL='https://your-domain.atlassian.net'
-export CONFLUENCE_EMAIL='name@company.com'
-export CONFLUENCE_API_TOKEN='***'
-```
 
 ## Workflow
 1. Confirm `action` and required fields.
@@ -56,23 +33,6 @@ export CONFLUENCE_API_TOKEN='***'
    - `update`: `skills/scripts/confluence_write_page.sh update <page_id> <title_or_dash> <body_file>`
 4. Return a concise summary first, then key fields (`id`, `title`, `version`, `url`).
 
-## Output Contract
-1. Result: what was read/created/updated.
-2. Key Fields: page id, title, version, link.
-3. Next Steps: validation or follow-up edits.
-
-## Failure Handling
-- Missing env vars: trigger config bootstrap flow and continue.
-- 401/403: verify token and Confluence permissions.
-- 404: verify page id and site visibility.
-- 409 on update: fetch latest version and retry with incremented version.
-
-## Notes
-- Script uses Confluence REST API v1 (`/wiki/rest/api/content`).
-- `body_storage` must be valid Confluence storage format (XHTML-like markup).
-
 ## Templates
-- Technical solution template:
-  `skills/confluence-page-manager/templates/technical-solution.storage`
-- Inventory template:
-  `skills/confluence-page-manager/templates/inventory.storage`
+- `skills/confluence-page-manager/templates/technical-solution.storage`
+- `skills/confluence-page-manager/templates/inventory.storage`

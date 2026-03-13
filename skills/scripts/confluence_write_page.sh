@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Requires jq for JSON creation/parsing.
 if ! command -v jq >/dev/null 2>&1; then
   echo "jq is required but not found in PATH" >&2
   exit 1
@@ -15,24 +14,11 @@ if [[ -z "$MODE" ]]; then
   exit 1
 fi
 
-CONFLUENCE_BASE_URL_EFFECTIVE="${CONFLUENCE_BASE_URL:-${ATLASSIAN_BASE_URL:-}}"
-CONFLUENCE_EMAIL_EFFECTIVE="${CONFLUENCE_EMAIL:-${ATLASSIAN_EMAIL:-}}"
-CONFLUENCE_API_TOKEN_EFFECTIVE="${CONFLUENCE_API_TOKEN:-${ATLASSIAN_API_TOKEN:-}}"
+: "${ATLASSIAN_BASE_URL:?missing ATLASSIAN_BASE_URL}"
+: "${ATLASSIAN_EMAIL:?missing ATLASSIAN_EMAIL}"
+: "${ATLASSIAN_API_TOKEN:?missing ATLASSIAN_API_TOKEN}"
 
-if [[ -z "$CONFLUENCE_BASE_URL_EFFECTIVE" ]]; then
-  echo "missing CONFLUENCE_BASE_URL (or ATLASSIAN_BASE_URL)" >&2
-  exit 1
-fi
-if [[ -z "$CONFLUENCE_EMAIL_EFFECTIVE" ]]; then
-  echo "missing CONFLUENCE_EMAIL (or ATLASSIAN_EMAIL)" >&2
-  exit 1
-fi
-if [[ -z "$CONFLUENCE_API_TOKEN_EFFECTIVE" ]]; then
-  echo "missing CONFLUENCE_API_TOKEN (or ATLASSIAN_API_TOKEN)" >&2
-  exit 1
-fi
-
-BASE="${CONFLUENCE_BASE_URL_EFFECTIVE%/}"
+BASE="${ATLASSIAN_BASE_URL%/}"
 API="${BASE}/wiki/rest/api/content"
 
 api_call() {
@@ -41,13 +27,13 @@ api_call() {
   local data_file="${3:-}"
 
   if [[ -n "$data_file" ]]; then
-    curl -sS -u "${CONFLUENCE_EMAIL_EFFECTIVE}:${CONFLUENCE_API_TOKEN_EFFECTIVE}" \
+    curl -sS -u "${ATLASSIAN_EMAIL}:${ATLASSIAN_API_TOKEN}" \
       -H "Accept: application/json" \
       -H "Content-Type: application/json" \
       -X "$method" "$url" \
       --data-binary "@$data_file"
   else
-    curl -sS -u "${CONFLUENCE_EMAIL_EFFECTIVE}:${CONFLUENCE_API_TOKEN_EFFECTIVE}" \
+    curl -sS -u "${ATLASSIAN_EMAIL}:${ATLASSIAN_API_TOKEN}" \
       -H "Accept: application/json" \
       -X "$method" "$url"
   fi
@@ -68,10 +54,7 @@ case "$MODE" in
     fi
 
     TMP_JSON="$(mktemp)"
-    jq -n \
-      --arg t "$TITLE" \
-      --arg s "$SPACE_KEY" \
-      --arg v "$(cat "$BODY_FILE")" \
+    jq -n --arg t "$TITLE" --arg s "$SPACE_KEY" --arg v "$(cat "$BODY_FILE")" \
       '{type:"page", title:$t, space:{key:$s}, body:{storage:{value:$v,representation:"storage"}}}' > "$TMP_JSON"
     api_call POST "$API" "$TMP_JSON"
     rm -f "$TMP_JSON"
@@ -107,13 +90,8 @@ case "$MODE" in
     NEXT_VERSION=$((CURRENT_VERSION + 1))
 
     TMP_JSON="$(mktemp)"
-    jq -n \
-      --arg id "$PAGE_ID" \
-      --arg t "$NEW_TITLE" \
-      --arg v "$(cat "$BODY_FILE")" \
-      --argjson n "$NEXT_VERSION" \
+    jq -n --arg id "$PAGE_ID" --arg t "$NEW_TITLE" --arg v "$(cat "$BODY_FILE")" --argjson n "$NEXT_VERSION" \
       '{id:$id, type:"page", title:$t, version:{number:$n}, body:{storage:{value:$v,representation:"storage"}}}' > "$TMP_JSON"
-
     api_call PUT "${API}/${PAGE_ID}" "$TMP_JSON"
     rm -f "$TMP_JSON"
     ;;
