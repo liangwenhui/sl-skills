@@ -1,0 +1,63 @@
+<h1>技术方案：${PROJECT_NAME}</h1>
+<p><strong>文档状态</strong>：草稿</p>
+<p><strong>负责人</strong>：${OWNER}</p>
+<p><strong>评审人</strong>：${REVIEWERS}</p>
+<p><strong>更新时间</strong>：${DATE}</p>
+
+<h2>1. 背景与目标</h2>
+<p>${BACKGROUND}</p>
+<ul>
+  <li>业务目标：${BUSINESS_GOAL}</li>
+  <li>技术目标：${TECH_GOAL}</li>
+  <li>非目标：${NON_GOALS}</li>
+</ul>
+
+<h2>2. 现状与问题</h2>
+<ul>
+  <li>现状：${CURRENT_STATE}</li>
+  <li>核心问题：${KEY_PROBLEMS}</li>
+  <li>影响范围：${IMPACT_SCOPE}</li>
+</ul>
+
+<h2>3. 方案概述</h2>
+<p>${SOLUTION_SUMMARY}</p>
+
+<h2>4. 详细设计</h2>
+<h3>4.1 架构设计</h3>
+<p>${ARCHITECTURE}</p>
+
+<h3>4.2 数据设计</h3>
+<p>${DATA_MODEL}</p>
+
+<h3>4.3 接口设计</h3>
+<p>${API_DESIGN}</p>
+
+<h3>4.4 流程设计</h3>
+<p>${FLOW_DESIGN}</p>
+
+<h2>5. 风险与回滚</h2>
+<ul>
+  <li>主要风险：${RISKS}</li>
+  <li>监控与告警：${OBSERVABILITY}</li>
+  <li>回滚方案：${ROLLBACK_PLAN}</li>
+</ul>
+
+<h2>6. 测试与验收</h2>
+<ul>
+  <li>测试范围：${TEST_SCOPE}</li>
+  <li>测试策略：${TEST_STRATEGY}</li>
+  <li>验收标准：${ACCEPTANCE_CRITERIA}</li>
+</ul>
+
+<h2>7. 发布计划</h2>
+<ul>
+  <li>发布时间：${RELEASE_TIME}</li>
+  <li>灰度策略：${ROLLOUT_PLAN}</li>
+  <li>负责人：${RELEASE_OWNER}</li>
+</ul>
+
+<h2>8. 待确认事项</h2>
+<ul>
+  <li>${OPEN_QUESTION_1}</li>
+  <li>${OPEN_QUESTION_2}</li>
+</ul>

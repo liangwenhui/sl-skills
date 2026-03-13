@@ -1,0 +1,74 @@
+<h1>盘点报告：${INVENTORY_TOPIC}</h1>
+<p><strong>盘点范围</strong>：${SCOPE}</p>
+<p><strong>盘点负责人</strong>：${OWNER}</p>
+<p><strong>盘点时间</strong>：${DATE_RANGE}</p>
+
+<h2>1. 盘点目标</h2>
+<p>${OBJECTIVE}</p>
+
+<h2>2. 盘点清单</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>分类</th>
+      <th>对象</th>
+      <th>当前状态</th>
+      <th>负责人</th>
+      <th>备注</th>
+    </tr>
+    <tr>
+      <td>${CATEGORY_1}</td>
+      <td>${ITEM_1}</td>
+      <td>${STATUS_1}</td>
+      <td>${ITEM_OWNER_1}</td>
+      <td>${NOTE_1}</td>
+    </tr>
+    <tr>
+      <td>${CATEGORY_2}</td>
+      <td>${ITEM_2}</td>
+      <td>${STATUS_2}</td>
+      <td>${ITEM_OWNER_2}</td>
+      <td>${NOTE_2}</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>3. 关键发现</h2>
+<ul>
+  <li>${FINDING_1}</li>
+  <li>${FINDING_2}</li>
+  <li>${FINDING_3}</li>
+</ul>
+
+<h2>4. 风险与问题</h2>
+<ul>
+  <li>${RISK_1}</li>
+  <li>${RISK_2}</li>
+</ul>
+
+<h2>5. 整改计划</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>问题</th>
+      <th>措施</th>
+      <th>负责人</th>
+      <th>截止时间</th>
+      <th>状态</th>
+    </tr>
+    <tr>
+      <td>${ISSUE_1}</td>
+      <td>${ACTION_1}</td>
+      <td>${ACTION_OWNER_1}</td>
+      <td>${DUE_DATE_1}</td>
+      <td>${ACTION_STATUS_1}</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>6. 结论与下一步</h2>
+<p>${CONCLUSION}</p>
+<ul>
+  <li>${NEXT_STEP_1}</li>
+  <li>${NEXT_STEP_2}</li>
+</ul>
