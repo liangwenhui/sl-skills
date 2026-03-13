@@ -2,6 +2,10 @@
 
 跨 Agent 通用的 Skill 仓库（Codex / Claude Code / OpenCode / OpenClaw）。
 
+## Installation
+
+Fetch and follow instructions from https://github.com/liangwenhui/sl-skills/blob/main/INSTALL.md
+
 ## 设计原则
 
 - 以 Prompt-Only 为默认机制（最通用）
