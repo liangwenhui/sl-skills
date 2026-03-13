@@ -12,6 +12,12 @@ EMAIL="${2:-${ATLASSIAN_EMAIL:-}}"
 TOKEN="${3:-${ATLASSIAN_API_TOKEN:-}}"
 BITBUCKET_TOKEN_VALUE="${4:-${BITBUCKET_TOKEN:-${BITBUCKET_APP_PASSWORD:-}}}"
 
+if [[ -z "$TOKEN" ]]; then
+  echo "ATLASSIAN_API_TOKEN is missing." >&2
+  script_dir="$(cd "$(dirname "$0")" && pwd)"
+  "$script_dir/open_atlassian_security.sh" >/dev/null 2>&1 || true
+fi
+
 if [[ -z "$BASE_URL" || -z "$EMAIL" || -z "$TOKEN" ]]; then
   echo "Usage: setup_atlassian_env.sh <base_url> <email> <api_token> [bitbucket_token]" >&2
   echo "Or provide ATLASSIAN_BASE_URL/ATLASSIAN_EMAIL/ATLASSIAN_API_TOKEN in env." >&2

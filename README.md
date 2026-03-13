@@ -58,6 +58,12 @@ https://github.com/liangwenhui/sl-skills/blob/main/INSTALL.md
     - `skills/debate-workflow/templates/prosecutor.prompt.md`
     - `skills/debate-workflow/templates/main-synthesis.prompt.md`
 
+- `reset-sl-skill-config`
+  - File: `skills/reset-sl-skill-config/SKILL.md`
+  - Purpose: reset persisted Atlassian/Bitbucket config interactively
+  - Script: `skills/scripts/reset_sl_skill_config.sh`
+  - Behavior: empty input keeps existing values
+
 ## Add a New Skill
 
 1. Create `skills/<skill-name>/`

@@ -58,6 +58,12 @@ https://github.com/liangwenhui/sl-skills/blob/main/INSTALL.md
     - `skills/debate-workflow/templates/prosecutor.prompt.md`
     - `skills/debate-workflow/templates/main-synthesis.prompt.md`
 
+- `reset-sl-skill-config`
+  - 文件：`skills/reset-sl-skill-config/SKILL.md`
+  - 用途：交互式重置已持久化的 Atlassian/Bitbucket 配置
+  - 脚本：`skills/scripts/reset_sl_skill_config.sh`
+  - 特性：不填写时自动沿用旧值
+
 ## 新增 Skill
 
 1. 新建目录 `skills/<skill-name>/`
