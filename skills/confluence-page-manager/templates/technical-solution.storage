@@ -1,63 +1,44 @@
-<h1>技术方案：${PROJECT_NAME}</h1>
-<p><strong>文档状态</strong>：草稿</p>
-<p><strong>负责人</strong>：${OWNER}</p>
-<p><strong>评审人</strong>：${REVIEWERS}</p>
-<p><strong>更新时间</strong>：${DATE}</p>
-
-<h2>1. 背景与目标</h2>
-<p>${BACKGROUND}</p>
-<ul>
-  <li>业务目标：${BUSINESS_GOAL}</li>
-  <li>技术目标：${TECH_GOAL}</li>
-  <li>非目标：${NON_GOALS}</li>
-</ul>
-
-<h2>2. 现状与问题</h2>
-<ul>
-  <li>现状：${CURRENT_STATE}</li>
-  <li>核心问题：${KEY_PROBLEMS}</li>
-  <li>影响范围：${IMPACT_SCOPE}</li>
-</ul>
-
-<h2>3. 方案概述</h2>
-<p>${SOLUTION_SUMMARY}</p>
-
-<h2>4. 详细设计</h2>
-<h3>4.1 架构设计</h3>
-<p>${ARCHITECTURE}</p>
-
-<h3>4.2 数据设计</h3>
-<p>${DATA_MODEL}</p>
-
-<h3>4.3 接口设计</h3>
-<p>${API_DESIGN}</p>
-
-<h3>4.4 流程设计</h3>
-<p>${FLOW_DESIGN}</p>
-
-<h2>5. 风险与回滚</h2>
-<ul>
-  <li>主要风险：${RISKS}</li>
-  <li>监控与告警：${OBSERVABILITY}</li>
-  <li>回滚方案：${ROLLBACK_PLAN}</li>
-</ul>
-
-<h2>6. 测试与验收</h2>
-<ul>
-  <li>测试范围：${TEST_SCOPE}</li>
-  <li>测试策略：${TEST_STRATEGY}</li>
-  <li>验收标准：${ACCEPTANCE_CRITERIA}</li>
-</ul>
-
-<h2>7. 发布计划</h2>
-<ul>
-  <li>发布时间：${RELEASE_TIME}</li>
-  <li>灰度策略：${ROLLOUT_PLAN}</li>
-  <li>负责人：${RELEASE_OWNER}</li>
-</ul>
-
-<h2>8. 待确认事项</h2>
-<ul>
-  <li>${OPEN_QUESTION_1}</li>
-  <li>${OPEN_QUESTION_2}</li>
-</ul>
+<ac:structured-macro ac:name="panel" ac:schema-version="1" ac:macro-id="ce3b8454-fe5b-4ebf-bcb8-7cacf86de605"><ac:parameter ac:name="panelIcon">:warning:</ac:parameter><ac:parameter ac:name="panelIconId">atlassian-warning</ac:parameter><ac:parameter ac:name="bgColor">#FFF0B3</ac:parameter><ac:rich-text-body><p>This is a template, DO NOT directly edit and leave content here.</p><ol start="1"><li><p>To copy the template page and delete the guide lines.</p></li><li><p>Best practices <ac:link ac:card-appearance="inline"><ri:page ri:content-title="Engineering Best Practice &amp; Checklists" ri:version-at-save="28" /><ac:link-body>Engineering Best Practice &amp; Checklists</ac:link-body></ac:link> </p></li><li><p>Non-functional Requirements (NFRs) <ac:link ac:card-appearance="inline"><ri:page ri:content-title="Non-functional requirements (NFRs) [WIP]" ri:version-at-save="3" /><ac:link-body>Non-functional requirements (NFRs) [WIP]</ac:link-body></ac:link> </p></li></ol></ac:rich-text-body></ac:structured-macro><p /><ac:structured-macro ac:name="toc" ac:schema-version="1" data-layout="default" ac:local-id="27dcc1f8-7503-4bff-9aa5-c8edb24a50f7" ac:macro-id="d8d5ee186e3843de65e714598cb36f9c"><ac:parameter ac:name="minLevel">1</ac:parameter><ac:parameter ac:name="maxLevel">7</ac:parameter></ac:structured-macro><h1>Background</h1><p><span style="color: rgb(151,160,175);">High-level description on the requirement and objectives or facts/findings that related to this change. Includes business value and impact if possible.</span><span style="color: rgb(191,38,0);"> (Required) </span></p><h1>Objectives </h1><p><span style="color: rgb(151,160,175);">Clearly list the objectives and expected outcomes of the project to ensure alignment of expectations among the team and stakeholders. </span><span style="color: rgb(191,38,0);">(Required) </span></p><h1>Documents &amp; Versions</h1><h2>Specs</h2><p><span style="color: rgb(151,160,175);">Links of related information like BRD, PRD, Mockups, reference document, repo or even Slack conversation. </span><span style="color: rgb(191,38,0);">(Required)</span></p><table data-table-width="760" data-layout="default" ac:local-id="024eae5e-1712-4587-b769-f2b3835722c0"><colgroup><col style="width: 122.0px;" /><col style="width: 637.0px;" /></colgroup><tbody><tr><th><p><strong>BRD</strong></p></th><td><p /></td></tr><tr><th><p><strong>PRD</strong></p></th><td><p>&nbsp;</p></td></tr><tr><th><p><strong>Mockups</strong></p></th><td><p>&nbsp;</p></td></tr><tr><th><p><strong>Tickets</strong></p></th><td><p /></td></tr></tbody></table><h2>Versions </h2><p><span style="color: rgb(151,160,175);">Ensure document version numbers are consistent and clearly identified for tracking and differentiation. </span><span style="color: rgb(191,38,0);">(Required) </span></p><table data-table-width="760" data-layout="default" ac:local-id="12fcd7f9-2af4-4976-9027-12c79c895908"><colgroup><col style="width: 99.0px;" /><col style="width: 99.0px;" /><col style="width: 99.0px;" /><col style="width: 459.0px;" /></colgroup><tbody><tr><th><p><strong>Version</strong></p></th><th><p><strong>Date</strong></p></th><th><p><strong>Author</strong></p></th><th><p><strong>Remarks</strong></p></th></tr><tr><td><p /></td><td><p /></td><td><p /></td><td><p /></td></tr><tr><td><p /></td><td><p /></td><td><p /></td><td><p /></td></tr></tbody></table><h2>Terms &amp; Terminology</h2><p><span style="color: rgb(151,160,175);">Provide a glossary of technical terms and abbreviations used in the document.</span></p><h2>People</h2><p><span style="color: rgb(151,160,175);">List the project team members and their roles. </span><span style="color: rgb(191,38,0);">(Required) </span></p><table data-table-width="760" data-layout="default" ac:local-id="d11a5ffd-ce02-444c-bc67-57c1f4085236"><colgroup><col style="width: 160.0px;" /><col style="width: 599.0px;" /></colgroup><tbody><tr><th><p><strong>SA</strong></p></th><td><p /></td></tr><tr><th><p><strong>Designer</strong></p></th><td><p>&nbsp;</p></td></tr><tr><th><p><strong>Tech Lead</strong></p></th><td><p>&nbsp;</p></td></tr><tr><th><p><strong>QA/QE</strong></p></th><td><p>&nbsp;</p></td></tr><tr><th><p><strong>Product</strong></p></th><td><p>&nbsp;</p></td></tr><tr><th><p><strong>PMO</strong></p></th><td><p>&nbsp;</p></td></tr></tbody></table><h1>Scope</h1><p><span style="color: rgb(151,160,175);">List out limitations and things that are planned but not included in this plan (with follow up document). </span><span style="color: rgb(191,38,0);">(Required by phases) </span></p><h2>Features</h2><p><span style="color: rgb(151,160,175);">List major features or functionalities.</span></p><h2>Feature Limitations</h2><p><span style="color: rgb(151,160,175);">Specify limitations or constraints on features.</span></p><h2>Excluded Content</h2><p><span style="color: rgb(151,160,175);">Clearly state what is not included in the project.</span></p><h1>Technical Detail</h1><h2>Architecture</h2><p><span style="color: rgb(151,160,175);">Diagram of existing or proposed architecture, possibly visualize dependencies between infrastructure, services, database storage, components or features. List out items like new service, tech stack, database introduced, caches, message queue or any other relevant changes to the system that impact its overall structure and functionality. </span><span style="color: rgb(191,38,0);">(Required if any changes) </span></p><h2>Database</h2><p><span style="color: rgb(151,160,175);">List out new changes on database with fields, description, possible values and validations. For new collection, please including UML diagram possibly with relation on existing models.</span></p><ac:task-list>
+<ac:task>
+<ac:task-id>9</ac:task-id>
+<ac:task-uuid>9</ac:task-uuid>
+<ac:task-status>incomplete</ac:task-status>
+<ac:task-body><span class="placeholder-inline-tasks">Update schema map <ac:link ac:card-appearance="inline"><ri:page ri:content-title="Database Schema Map (EC)" ri:version-at-save="11" /><ac:link-body>Database Schema Map (EC)</ac:link-body></ac:link> </span></ac:task-body>
+</ac:task>
+<ac:task>
+<ac:task-id>10</ac:task-id>
+<ac:task-uuid>10</ac:task-uuid>
+<ac:task-status>incomplete</ac:task-status>
+<ac:task-body><span class="placeholder-inline-tasks">Update Document of relative Domain Model (e.g. <ac:link ac:card-appearance="inline"><ri:page ri:content-title="User Documentations - Model" ri:version-at-save="15" /><ac:link-body>User Documentations - Model</ac:link-body></ac:link> )</span></ac:task-body>
+</ac:task>
+<ac:task>
+<ac:task-id>11</ac:task-id>
+<ac:task-uuid>11</ac:task-uuid>
+<ac:task-status>incomplete</ac:task-status>
+<ac:task-body><span class="placeholder-inline-tasks">Prevent adding default value to columns of an embedded document (<ac:link ac:anchor="Prevent-default-value-in-embedded-document-field-(slack)"><ri:page ri:content-title="Engineering Best Practice &amp; Checklists" ri:version-at-save="28" /><ac:link-body>reason</ac:link-body></ac:link>)</span></ac:task-body>
+</ac:task>
+<ac:task>
+<ac:task-id>12</ac:task-id>
+<ac:task-uuid>12</ac:task-uuid>
+<ac:task-status>incomplete</ac:task-status>
+<ac:task-body><span class="placeholder-inline-tasks">State if you will do a <strong>double write</strong> if your changes involve moving some data from one database to another (include but not limited to <strong>one field to another, one collection to another, one cluster to another or even mongodb to tidb</strong>). Please briefly describe your plan about what, how and where your data is gonna move to. This could help downstream users of your data (eg, <strong>Data team)</strong> to evaluate whether they will be involved in this project.<span style="color: rgb(191,38,0);"> (Required if any changes)</span></span></ac:task-body>
+</ac:task>
+<ac:task>
+<ac:task-id>13</ac:task-id>
+<ac:task-uuid>c7a0354f-6fd2-474e-a9af-474143b2a6c0</ac:task-uuid>
+<ac:task-status>incomplete</ac:task-status>
+<ac:task-body><span class="placeholder-inline-tasks">Confirm with DBA how the db existing indices will be created (auto or manual?) in the new cluster if you need to migrate the db from one place to another. ( eg altas to self host ). </span></ac:task-body>
+</ac:task>
+</ac:task-list><h2>Logical Data Flow</h2><h2>Components </h2><table data-table-width="1800" data-layout="align-start" ac:local-id="296b55e2-88ae-4d35-acb5-c1de8a828c7a"><tbody><tr><th><p style="text-align: center;"><strong>Item</strong></p></th><th><p style="text-align: center;"><strong>Detail</strong></p></th><th><p style="text-align: center;"><strong>Man/Day</strong></p></th></tr><tr><td><p><strong>SHOP</strong></p></td><td><p /></td><td><p /></td></tr><tr><td><p><code>ProductReviewsController</code>#product_avg_reviews</p></td><td><p>新增GET action，拿取商品的平均review星等</p><p>request payload:</p><ac:structured-macro ac:name="code" ac:schema-version="1" ac:macro-id="7397cff9-4fc7-4d14-89a1-26275e289e4f"><ac:plain-text-body><![CDATA[{ product_ids:[] }]]></ac:plain-text-body></ac:structured-macro><p>response payload:</p><ac:structured-macro ac:name="code" ac:schema-version="1" ac:macro-id="37b649cd-8e37-4c85-91ec-f97a56146b18"><ac:plain-text-body><![CDATA[{  
+  product_avg_reviews: {
+    #{product_id_1} : 4.5,
+    #{product_id_2} : 4,
+    #{product_id_3} : 4.8,
+  },
+}]]></ac:plain-text-body></ac:structured-macro></td><td><p /></td></tr><tr><td><p><strong>SEARCH</strong></p></td><td><p /></td><td><p /></td></tr><tr><td><p><code>ProductReviewsController</code>#product_avg_reviews</p></td><td><p>新增GET action，拿取商品的平均review星等</p><p>request payload:</p><ac:structured-macro ac:name="code" ac:schema-version="1" ac:macro-id="7285a2c4-a67e-4739-a402-c35d842a4083"><ac:plain-text-body><![CDATA[{ product_ids:[] }]]></ac:plain-text-body></ac:structured-macro><p>response payload:</p><ac:structured-macro ac:name="code" ac:schema-version="1" ac:macro-id="c10eeaa4-4b38-407c-bf6a-27b52d5c5a6a"><ac:plain-text-body><![CDATA[{  
+  product_avg_reviews: {
+    #{product_id_1} : 4.5,
+    #{product_id_2} : 4,
+    #{product_id_3} : 4.8,
+  },
+}]]></ac:plain-text-body></ac:structured-macro></td><td><p /></td></tr><tr><td><p /></td><td><p /></td><td><p /></td></tr></tbody></table><h2>Error Handling </h2><p><span style="color: rgb(151,160,175);">List out expected errors and corresponding plans (e.g. retry on failure, rate limit, circuit breaker) and baseline handling on expected issues.</span></p><h2>Limitation and Foreseeable Issues </h2><p><span style="color: rgb(151,160,175);">List out hard Limits and potential Issue in production/long run.</span></p><h2>Security Checking </h2><p><span style="color: rgb(151,160,175);">e.g., Insecure Direct Object Reference (</span><a href="https://portswigger.net/web-security/access-control/idor"><span style="color: rgb(151,160,175);">IDOR</span></a><span style="color: rgb(151,160,175);">), User Authentication, Encryption Algorithm, Sensitive PII/Token Leaking.</span><span style="color: rgb(191,38,0);"> (Required if any relative) </span></p><ac:structured-macro ac:name="note" ac:schema-version="1" ac:macro-id="86128d0f-5e86-4035-9c80-136495560f17"><ac:rich-text-body><p><span style="color: rgb(151,160,175);">IDOR: Ensure that your API effectively verifies the ownership of resources. For instance, it should prevent unauthorized access to orders by confirming that the requester is the same merchant who initially authorized the transaction, rather than allowing access simply by altering the API URL. This security measure can be implemented by cross-referencing the merchant ID from the session or token (and not from the URL or POST body, which can be easily modified) with the corresponding entry in the database table. For example, you could use a query like Order.where(:owner_id =&gt; session.merchant_id) to enforce this ownership check.</span></p></ac:rich-text-body></ac:structured-macro><h2>Timeline and Phasing</h2><p><span style="color: rgb(151,160,175);">Provide the project timeline and phase execution plan to ensure task and delivery date clarity. </span><span style="color: rgb(191,38,0);">(Required)</span><span style="color: rgb(151,160,175);"> </span></p><h1>Test Plan</h1><h2>Affected Area</h2><p><span style="color: rgb(151,160,175);">List out possibly affected features/areas and edge cases that to be concerned.  </span><span style="color: rgb(191,38,0);">(Required) </span></p><h2>Smoke Test</h2><p><span style="color: rgb(151,160,175);">List out expected smoke tests to be added. </span><span style="color: rgb(191,38,0);">(Required) </span></p><h2>Integration Test</h2><p><span style="color: rgb(151,160,175);">State if integration with other team is needed and expected key dates. </span><span style="color: rgb(191,38,0);">(Required) </span></p><h2>Unit Test</h2><p><span style="color: rgb(151,160,175);">List the expected unit test cases. </span><span style="color: rgb(191,38,0);">(Required) </span></p><h1>Release Plan</h1><h2>Dependencies</h2><p><span style="color: rgb(151,160,175);">Detail the dependencies with other systems or components to track and manage these dependencies effectively.  e.g. Blocked by XXX feature rollout. </span></p><h2>Migration</h2><p><span style="color: rgb(151,160,175);">List out the migration steps and possibly with sample data or projected issues.</span></p><p><span style="color: rgb(151,160,175);">e.g. new Liquid function </span><a href="https://shopline-layout.readme.io/docs/%E6%9C%83%E5%93%A1%E6%8E%A8%E8%96%A6%E7%8D%8E%E8%B3%9E-member-referral-campaign" data-card-appearance="inline">https://shopline-layout.readme.io/docs/%E6%9C%83%E5%93%A1%E6%8E%A8%E8%96%A6%E7%8D%8E%E8%B3%9E-member-referral-campaign</a> <span style="color: rgb(151,160,175);"> </span><span style="color: rgb(191,38,0);">(Required) </span></p><h2>Deployment</h2><p><span style="color: rgb(151,160,175);">List out prerequisite resources or procedure of deployment. </span><span style="color: rgb(191,38,0);"> (Required if any dependency) </span></p><h2>Performance Testing</h2><p><span style="color: rgb(151,160,175);">List out plan on application and service load test, including tools, number of samples, expected capacity.</span></p><h2>Monitoring</h2><p><span style="color: rgb(151,160,175);">List out monitoring tools and expected metrics/alarms to be measured/set. It&rsquo;s used to be a grafana link.  </span><span style="color: rgb(191,38,0);">(Required) </span></p><h2>Rollback</h2><p><span style="color: rgb(151,160,175);">List out steps to rollback and potential steps we need to execute (say correcting data or extra configuration).</span></p><h1>Others</h1><h2>FAQ</h2><p><span style="color: rgb(151,160,175);">List out questions and follow up items before/during implementation meetings to avoid repetitive questions.</span></p><h2>Appendix</h2><p><span style="color: rgb(151,160,175);">Less important or related supplementary materials.</span></p><p />
