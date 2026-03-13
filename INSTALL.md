@@ -1,10 +1,26 @@
 # INSTALL
 
+## Step -1: Clone Repo
+
+在开始前，先拉取仓库到本地：
+
+```bash
+git clone https://github.com/liangwenhui/sl-skills.git
+cd sl-skills
+```
+
+如果仓库已存在，先更新：
+
+```bash
+cd sl-skills
+git pull --ff-only
+```
+
+## Step 0: 先识别当前 Agent
+
 本仓库支持两种方式：
 - Prompt-Only（跨 Agent 通用，推荐默认）
 - Native Discovery（按当前 Agent 的本地目录挂载）
-
-## Step 0: 先识别当前 Agent
 
 先让 Agent 回答自己是什么，再决定安装方式。可直接发这句：
 
@@ -37,7 +53,7 @@ If there is conflict, prioritize safety and explicit user constraints.
 
 ```bash
 mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
-ln -sfn /ABSOLUTE/PATH/TO/skills/<skill-name> "${CODEX_HOME:-$HOME/.codex}/skills/<skill-name>"
+ln -sfn /ABSOLUTE/PATH/TO/sl-skills/skills/<skill-name> "${CODEX_HOME:-$HOME/.codex}/skills/<skill-name>"
 ls -la "${CODEX_HOME:-$HOME/.codex}/skills/<skill-name>"
 ```
 
@@ -47,7 +63,7 @@ ls -la "${CODEX_HOME:-$HOME/.codex}/skills/<skill-name>"
 
 ```bash
 mkdir -p "$HOME/.claude/skills"
-ln -sfn /ABSOLUTE/PATH/TO/skills/<skill-name> "$HOME/.claude/skills/<skill-name>"
+ln -sfn /ABSOLUTE/PATH/TO/sl-skills/skills/<skill-name> "$HOME/.claude/skills/<skill-name>"
 ls -la "$HOME/.claude/skills/<skill-name>"
 ```
 
@@ -59,7 +75,7 @@ ls -la "$HOME/.claude/skills/<skill-name>"
 
 ```bash
 mkdir -p "$HOME/.openclaw/skills"
-ln -sfn /ABSOLUTE/PATH/TO/skills/<skill-name> "$HOME/.openclaw/skills/<skill-name>"
+ln -sfn /ABSOLUTE/PATH/TO/sl-skills/skills/<skill-name> "$HOME/.openclaw/skills/<skill-name>"
 ls -la "$HOME/.openclaw/skills/<skill-name>"
 ```
 
