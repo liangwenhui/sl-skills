@@ -16,11 +16,12 @@ description: Review Bitbucket pull requests and post PR comments via Bitbucket A
 - `ATLASSIAN_EMAIL`
 - `ATLASSIAN_API_TOKEN`
 
-## Mandatory Config Bootstrap
+## Mandatory Config Bootstrap (Persistent)
 1. Check `ATLASSIAN_*` before any Bitbucket API call.
 2. If missing, ask user to provide missing values one by one.
-3. Configure env in current shell session, then continue automatically.
-4. Do not ask user to run commands manually unless user explicitly wants manual mode.
+3. Persist config by running:
+   `skills/scripts/setup_atlassian_env.sh <base_url> <email> <api_token>`
+4. Continue automatically after persistence.
 5. Never print or repeat full token in response.
 
 ## Workflow
