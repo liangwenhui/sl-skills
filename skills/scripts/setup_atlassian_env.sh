@@ -7,10 +7,23 @@ if [[ -f "$ENV_FILE" ]]; then
   source "$ENV_FILE"
 fi
 
-BASE_URL="${1:-${ATLASSIAN_BASE_URL:-}}"
-EMAIL="${2:-${ATLASSIAN_EMAIL:-}}"
-TOKEN="${3:-${ATLASSIAN_API_TOKEN:-}}"
-BITBUCKET_TOKEN_VALUE="${4:-${BITBUCKET_TOKEN:-${BITBUCKET_APP_PASSWORD:-}}}"
+BASE_URL="${ATLASSIAN_BASE_URL:-}"
+EMAIL="${ATLASSIAN_EMAIL:-}"
+TOKEN="${ATLASSIAN_API_TOKEN:-}"
+BITBUCKET_TOKEN_VALUE="${BITBUCKET_TOKEN:-${BITBUCKET_APP_PASSWORD:-}}"
+
+if [[ $# -ge 1 ]]; then
+  BASE_URL="$1"
+fi
+if [[ $# -ge 2 ]]; then
+  EMAIL="$2"
+fi
+if [[ $# -ge 3 ]]; then
+  TOKEN="$3"
+fi
+if [[ $# -ge 4 ]]; then
+  BITBUCKET_TOKEN_VALUE="$4"
+fi
 
 if [[ -z "$TOKEN" ]]; then
   echo "ATLASSIAN_API_TOKEN is missing." >&2
@@ -58,6 +71,9 @@ export ATLASSIAN_API_TOKEN="$TOKEN"
 if [[ -n "$BITBUCKET_TOKEN_VALUE" ]]; then
   export BITBUCKET_TOKEN="$BITBUCKET_TOKEN_VALUE"
   export BITBUCKET_APP_PASSWORD="$BITBUCKET_TOKEN_VALUE"
+else
+  unset BITBUCKET_TOKEN || true
+  unset BITBUCKET_APP_PASSWORD || true
 fi
 
 echo "Persisted ATLASSIAN_* to $ENV_FILE"
