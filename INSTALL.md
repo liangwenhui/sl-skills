@@ -22,6 +22,26 @@ cd "$DEST_DIR"
 - 第一次执行：`git clone`
 - 之后重复执行：自动 `git pull --ff-only` 更新 skill
 
+## Step -0.5: Configure Atlassian Account (Prompt on Missing)
+
+安装阶段如果检测到系统环境变量缺失，会提示输入账户信息并持久化到本机。
+
+```bash
+# run under repo root
+if [ -z "${ATLASSIAN_BASE_URL:-}" ] || [ -z "${ATLASSIAN_EMAIL:-}" ] || [ -z "${ATLASSIAN_API_TOKEN:-}" ]; then
+  echo "ATLASSIAN_* is missing. Please input account settings."
+  read -r -p "ATLASSIAN_BASE_URL: " ATLASSIAN_BASE_URL
+  read -r -p "ATLASSIAN_EMAIL: " ATLASSIAN_EMAIL
+  read -r -s -p "ATLASSIAN_API_TOKEN: " ATLASSIAN_API_TOKEN
+  echo
+
+  ./skills/scripts/setup_atlassian_env.sh "$ATLASSIAN_BASE_URL" "$ATLASSIAN_EMAIL" "$ATLASSIAN_API_TOKEN"
+fi
+
+# load into current shell
+[ -f "$HOME/.atlassian_env" ] && source "$HOME/.atlassian_env"
+```
+
 ## Step 0: 先识别当前 Agent
 
 本仓库支持两种方式：
