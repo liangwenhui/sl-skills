@@ -14,13 +14,26 @@ if [[ ! "$ISSUE_KEY" =~ ^[A-Z][A-Z0-9]+-[0-9]+$ ]]; then
   exit 1
 fi
 
-: "${JIRA_BASE_URL:?missing JIRA_BASE_URL}"
-: "${JIRA_EMAIL:?missing JIRA_EMAIL}"
-: "${JIRA_API_TOKEN:?missing JIRA_API_TOKEN}"
+JIRA_BASE_URL_EFFECTIVE="${JIRA_BASE_URL:-${ATLASSIAN_BASE_URL:-}}"
+JIRA_EMAIL_EFFECTIVE="${JIRA_EMAIL:-${ATLASSIAN_EMAIL:-}}"
+JIRA_API_TOKEN_EFFECTIVE="${JIRA_API_TOKEN:-${ATLASSIAN_API_TOKEN:-}}"
 
-URL="${JIRA_BASE_URL%/}/rest/api/3/issue/${ISSUE_KEY}?fields=${FIELDS}"
+if [[ -z "$JIRA_BASE_URL_EFFECTIVE" ]]; then
+  echo "missing JIRA_BASE_URL (or ATLASSIAN_BASE_URL)" >&2
+  exit 1
+fi
+if [[ -z "$JIRA_EMAIL_EFFECTIVE" ]]; then
+  echo "missing JIRA_EMAIL (or ATLASSIAN_EMAIL)" >&2
+  exit 1
+fi
+if [[ -z "$JIRA_API_TOKEN_EFFECTIVE" ]]; then
+  echo "missing JIRA_API_TOKEN (or ATLASSIAN_API_TOKEN)" >&2
+  exit 1
+fi
+
+URL="${JIRA_BASE_URL_EFFECTIVE%/}/rest/api/3/issue/${ISSUE_KEY}?fields=${FIELDS}"
 
 curl -sS \
-  -u "${JIRA_EMAIL}:${JIRA_API_TOKEN}" \
+  -u "${JIRA_EMAIL_EFFECTIVE}:${JIRA_API_TOKEN_EFFECTIVE}" \
   -H "Accept: application/json" \
   "$URL"

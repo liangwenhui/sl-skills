@@ -12,19 +12,35 @@ description: Read and write Confluence pages via REST API. Use when user asks to
 - `space_key` (required for `create`)
 - `body_storage`: Confluence storage format body (required for `create` and `update`)
 
-## Required Environment
-- `CONFLUENCE_BASE_URL` (example: `https://your-domain.atlassian.net`)
+## Environment Strategy
+Default shared Atlassian env (recommended first-time setup):
+- `ATLASSIAN_BASE_URL`
+- `ATLASSIAN_EMAIL`
+- `ATLASSIAN_API_TOKEN`
+
+Service-specific override (optional):
+- `CONFLUENCE_BASE_URL`
 - `CONFLUENCE_EMAIL`
 - `CONFLUENCE_API_TOKEN`
 
+Resolution order:
+- `CONFLUENCE_*` first; fallback to `ATLASSIAN_*`.
+
 ## Mandatory Config Bootstrap
-1. Check required env vars before any Confluence API call.
-2. If any var is missing, ask user to provide missing values one by one.
-3. After user provides values, configure env in current shell session, then continue automatically.
+1. Check effective Confluence env before any API call.
+2. If missing, ask user to provide shared `ATLASSIAN_*` first.
+3. Configure env in current shell session, then continue automatically.
 4. Do not ask user to run commands manually unless user explicitly wants manual mode.
 5. Never print or repeat full token in response.
 
-Recommended setup command after collecting values:
+Recommended first-time setup:
+```bash
+export ATLASSIAN_BASE_URL='https://your-domain.atlassian.net'
+export ATLASSIAN_EMAIL='name@company.com'
+export ATLASSIAN_API_TOKEN='***'
+```
+
+Optional Confluence-only override:
 ```bash
 export CONFLUENCE_BASE_URL='https://your-domain.atlassian.net'
 export CONFLUENCE_EMAIL='name@company.com'
@@ -60,8 +76,3 @@ export CONFLUENCE_API_TOKEN='***'
   `skills/confluence-page-manager/templates/technical-solution.storage`
 - Inventory template:
   `skills/confluence-page-manager/templates/inventory.storage`
-
-Use with create/update:
-```bash
-skills/scripts/confluence_write_page.sh create <space_key> <title> skills/confluence-page-manager/templates/technical-solution.storage
-```

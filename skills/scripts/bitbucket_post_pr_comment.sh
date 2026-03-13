@@ -26,17 +26,26 @@ if [[ ! -f "$COMMENT_FILE" ]]; then
   exit 1
 fi
 
-: "${BITBUCKET_USERNAME:?missing BITBUCKET_USERNAME}"
-: "${BITBUCKET_APP_PASSWORD:?missing BITBUCKET_APP_PASSWORD}"
-BITBUCKET_API_BASE_URL="${BITBUCKET_API_BASE_URL:-https://api.bitbucket.org/2.0}"
+BITBUCKET_USERNAME_EFFECTIVE="${BITBUCKET_USERNAME:-${ATLASSIAN_EMAIL:-}}"
+BITBUCKET_APP_PASSWORD_EFFECTIVE="${BITBUCKET_APP_PASSWORD:-${ATLASSIAN_API_TOKEN:-}}"
+BITBUCKET_API_BASE_URL_EFFECTIVE="${BITBUCKET_API_BASE_URL:-https://api.bitbucket.org/2.0}"
 
-URL="${BITBUCKET_API_BASE_URL%/}/repositories/${WORKSPACE}/${REPO_SLUG}/pullrequests/${PR_ID}/comments"
+if [[ -z "$BITBUCKET_USERNAME_EFFECTIVE" ]]; then
+  echo "missing BITBUCKET_USERNAME (or ATLASSIAN_EMAIL)" >&2
+  exit 1
+fi
+if [[ -z "$BITBUCKET_APP_PASSWORD_EFFECTIVE" ]]; then
+  echo "missing BITBUCKET_APP_PASSWORD (or ATLASSIAN_API_TOKEN)" >&2
+  exit 1
+fi
+
+URL="${BITBUCKET_API_BASE_URL_EFFECTIVE%/}/repositories/${WORKSPACE}/${REPO_SLUG}/pullrequests/${PR_ID}/comments"
 PAYLOAD_FILE="$(mktemp)"
 
 jq -n --arg raw "$(cat "$COMMENT_FILE")" '{content:{raw:$raw}}' > "$PAYLOAD_FILE"
 
 curl -sS \
-  -u "${BITBUCKET_USERNAME}:${BITBUCKET_APP_PASSWORD}" \
+  -u "${BITBUCKET_USERNAME_EFFECTIVE}:${BITBUCKET_APP_PASSWORD_EFFECTIVE}" \
   -H "Accept: application/json" \
   -H "Content-Type: application/json" \
   -X POST "$URL" \

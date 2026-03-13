@@ -15,11 +15,24 @@ if [[ -z "$MODE" ]]; then
   exit 1
 fi
 
-: "${CONFLUENCE_BASE_URL:?missing CONFLUENCE_BASE_URL}"
-: "${CONFLUENCE_EMAIL:?missing CONFLUENCE_EMAIL}"
-: "${CONFLUENCE_API_TOKEN:?missing CONFLUENCE_API_TOKEN}"
+CONFLUENCE_BASE_URL_EFFECTIVE="${CONFLUENCE_BASE_URL:-${ATLASSIAN_BASE_URL:-}}"
+CONFLUENCE_EMAIL_EFFECTIVE="${CONFLUENCE_EMAIL:-${ATLASSIAN_EMAIL:-}}"
+CONFLUENCE_API_TOKEN_EFFECTIVE="${CONFLUENCE_API_TOKEN:-${ATLASSIAN_API_TOKEN:-}}"
 
-BASE="${CONFLUENCE_BASE_URL%/}"
+if [[ -z "$CONFLUENCE_BASE_URL_EFFECTIVE" ]]; then
+  echo "missing CONFLUENCE_BASE_URL (or ATLASSIAN_BASE_URL)" >&2
+  exit 1
+fi
+if [[ -z "$CONFLUENCE_EMAIL_EFFECTIVE" ]]; then
+  echo "missing CONFLUENCE_EMAIL (or ATLASSIAN_EMAIL)" >&2
+  exit 1
+fi
+if [[ -z "$CONFLUENCE_API_TOKEN_EFFECTIVE" ]]; then
+  echo "missing CONFLUENCE_API_TOKEN (or ATLASSIAN_API_TOKEN)" >&2
+  exit 1
+fi
+
+BASE="${CONFLUENCE_BASE_URL_EFFECTIVE%/}"
 API="${BASE}/wiki/rest/api/content"
 
 api_call() {
@@ -28,13 +41,13 @@ api_call() {
   local data_file="${3:-}"
 
   if [[ -n "$data_file" ]]; then
-    curl -sS -u "${CONFLUENCE_EMAIL}:${CONFLUENCE_API_TOKEN}" \
+    curl -sS -u "${CONFLUENCE_EMAIL_EFFECTIVE}:${CONFLUENCE_API_TOKEN_EFFECTIVE}" \
       -H "Accept: application/json" \
       -H "Content-Type: application/json" \
       -X "$method" "$url" \
       --data-binary "@$data_file"
   else
-    curl -sS -u "${CONFLUENCE_EMAIL}:${CONFLUENCE_API_TOKEN}" \
+    curl -sS -u "${CONFLUENCE_EMAIL_EFFECTIVE}:${CONFLUENCE_API_TOKEN_EFFECTIVE}" \
       -H "Accept: application/json" \
       -X "$method" "$url"
   fi
