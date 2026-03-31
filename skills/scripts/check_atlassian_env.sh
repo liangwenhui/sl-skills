@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -euo pipefail
 # Check if Atlassian environment variables are configured.
 # Returns 0 if all required vars are set, non-zero otherwise.
 

@@ -64,6 +64,12 @@ https://github.com/liangwenhui/sl-skills/blob/main/INSTALL.md
   - 脚本：`skills/scripts/reset_sl_skill_config.sh`
   - 特性：不填写时自动沿用旧值
 
+- `commit-policy`
+  - 文件：`skills/commit-policy/SKILL.md`
+  - 用途：按团队 commit 规范准备小而集中的提交，给出拆分建议并生成合规 message
+  - 参考：`skills/commit-policy/references/commit-format.md`
+  - 行为：提交前先展示提交范围、是否建议拆分、建议 commit message
+
 ## 新增 Skill
 
 1. 新建目录 `skills/<skill-name>/`

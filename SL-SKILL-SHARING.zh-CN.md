@@ -30,6 +30,9 @@
 - `debate-workflow`：多角色辩论式技术评审（高风险改动先论证）
   - /debate 基于SL-49454设计方案
 - `reset-sl-skill-config`：重置 Atlassian/Bitbucket 本地配置
+- `commit-policy`：按团队规范准备 commit，先判断是否要拆分，再生成合规 message
+  - /commit-policy 帮我为当前改动准备 commit message
+  - 看看这批改动要不要拆成两笔 commit
 
 ---
 
@@ -137,4 +140,3 @@ skills/scripts/my_skill.sh <arg1> <arg2>
 - 持续演进：按真实使用反馈迭代
 
 ---
-
