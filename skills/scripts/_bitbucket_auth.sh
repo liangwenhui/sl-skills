@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Shared Bitbucket authentication logic.
+# Source this file from Bitbucket scripts to set:
+#   BITBUCKET_USERNAME_EFFECTIVE
+#   BITBUCKET_TOKEN_EFFECTIVE
+
+BITBUCKET_USERNAME_EFFECTIVE="${BITBUCKET_USERNAME:-${ATLASSIAN_EMAIL:-}}"
+BITBUCKET_TOKEN_EFFECTIVE="${BITBUCKET_TOKEN:-${BITBUCKET_APP_PASSWORD:-${ATLASSIAN_API_TOKEN:-}}}"
+
+if [[ -z "$BITBUCKET_USERNAME_EFFECTIVE" ]]; then
+  echo "missing BITBUCKET_USERNAME (or ATLASSIAN_EMAIL)" >&2
+  exit 1
+fi
+if [[ -z "$BITBUCKET_TOKEN_EFFECTIVE" ]]; then
+  echo "missing BITBUCKET_TOKEN (or BITBUCKET_APP_PASSWORD / ATLASSIAN_API_TOKEN)" >&2
+  exit 1
+fi

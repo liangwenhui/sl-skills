@@ -64,6 +64,12 @@ https://github.com/liangwenhui/sl-skills/blob/main/INSTALL.md
   - Script: `skills/scripts/reset_sl_skill_config.sh`
   - Behavior: empty input keeps existing values
 
+- `commit-policy`
+  - File: `skills/commit-policy/SKILL.md`
+  - Purpose: prepare focused commits under team naming rules, suggest split plans, and generate compliant commit messages
+  - Reference: `skills/commit-policy/references/commit-format.md`
+  - Behavior: shows commit scope, split recommendation, and proposed message before commit
+
 ## Add a New Skill
 
 1. Create `skills/<skill-name>/`

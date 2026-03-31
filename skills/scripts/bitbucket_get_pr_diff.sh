@@ -15,22 +15,13 @@ if [[ ! "$PR_ID" =~ ^[0-9]+$ ]]; then
   exit 1
 fi
 
-BITBUCKET_USERNAME_EFFECTIVE="${BITBUCKET_USERNAME:-${ATLASSIAN_EMAIL:-}}"
-BITBUCKET_TOKEN_EFFECTIVE="${BITBUCKET_TOKEN:-${BITBUCKET_APP_PASSWORD:-${ATLASSIAN_API_TOKEN:-}}}"
-
-if [[ -z "$BITBUCKET_USERNAME_EFFECTIVE" ]]; then
-  echo "missing BITBUCKET_USERNAME (or ATLASSIAN_EMAIL)" >&2
-  exit 1
-fi
-if [[ -z "$BITBUCKET_TOKEN_EFFECTIVE" ]]; then
-  echo "missing BITBUCKET_TOKEN (or BITBUCKET_APP_PASSWORD / ATLASSIAN_API_TOKEN)" >&2
-  exit 1
-fi
+# shellcheck source=_bitbucket_auth.sh
+source "$(cd "$(dirname "$0")" && pwd)/_bitbucket_auth.sh"
 
 BITBUCKET_API_BASE_URL="https://api.bitbucket.org/2.0"
 URL="${BITBUCKET_API_BASE_URL}/repositories/${WORKSPACE}/${REPO_SLUG}/pullrequests/${PR_ID}/diff"
 
-curl -sS \
+curl -sSL \
   -u "${BITBUCKET_USERNAME_EFFECTIVE}:${BITBUCKET_TOKEN_EFFECTIVE}" \
   -H "Accept: text/plain" \
   "$URL"

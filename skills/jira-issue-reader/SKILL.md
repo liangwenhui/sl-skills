@@ -5,6 +5,9 @@ description: Read Jira issue/card details using Jira REST API. Use when user ask
 
 # Jira Issue Reader
 
+## Goal
+Fetch Jira issue details via REST API and return a structured summary for the user.
+
 ## Inputs
 - `issue_key`: Jira key, for example `PROJ-123`
 - `fields` (optional): comma-separated Jira fields, default:
@@ -30,3 +33,14 @@ description: Read Jira issue/card details using Jira REST API. Use when user ask
 3. Call `skills/scripts/get_jira_issue.sh <issue_key> [fields]`.
 4. Return concise summary first, then raw key fields.
 5. If request asks for full body, return full JSON payload.
+
+## Output Contract
+1. One-line summary: issue key, type, status, assignee.
+2. Key fields table: priority, reporter, created, updated.
+3. Description excerpt (truncate if excessively long).
+4. Recent comments (last 3) if present.
+
+## Guardrails
+- Never expose raw API tokens in output.
+- If the issue key is invalid or not found, return a clear error instead of raw API response.
+- Do not modify or update Jira issues; this skill is read-only.

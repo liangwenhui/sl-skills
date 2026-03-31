@@ -54,10 +54,10 @@ case "$MODE" in
     fi
 
     TMP_JSON="$(mktemp)"
+    trap 'rm -f "$TMP_JSON"' EXIT
     jq -n --arg t "$TITLE" --arg s "$SPACE_KEY" --arg v "$(cat "$BODY_FILE")" \
       '{type:"page", title:$t, space:{key:$s}, body:{storage:{value:$v,representation:"storage"}}}' > "$TMP_JSON"
     api_call POST "$API" "$TMP_JSON"
-    rm -f "$TMP_JSON"
     ;;
 
   update)
@@ -90,10 +90,10 @@ case "$MODE" in
     NEXT_VERSION=$((CURRENT_VERSION + 1))
 
     TMP_JSON="$(mktemp)"
+    trap 'rm -f "$TMP_JSON"' EXIT
     jq -n --arg id "$PAGE_ID" --arg t "$NEW_TITLE" --arg v "$(cat "$BODY_FILE")" --argjson n "$NEXT_VERSION" \
       '{id:$id, type:"page", title:$t, version:{number:$n}, body:{storage:{value:$v,representation:"storage"}}}' > "$TMP_JSON"
     api_call PUT "${API}/${PAGE_ID}" "$TMP_JSON"
-    rm -f "$TMP_JSON"
     ;;
 
   *)

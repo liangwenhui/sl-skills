@@ -5,9 +5,12 @@ description: Read and write Confluence pages via REST API. Use when user asks to
 
 # Confluence Page Manager
 
+## Goal
+Read, create, and update Confluence pages via REST API, using storage-format templates when applicable.
+
 ## Inputs
 - `action`: `read` | `create` | `update`
-- `page_id` (required for `read` and `update`)
+- `page_id` (required for `read` and `update`). If user provides a full Confluence URL, extract `page_id` from the path segment `/pages/{page_id}/`.
 - `title` (required for `create`; optional for `update`)
 - `space_key` (required for `create`)
 - `body_storage`: Confluence storage format body (required for `create` and `update`)
@@ -34,6 +37,17 @@ description: Read and write Confluence pages via REST API. Use when user asks to
    - `create`: `skills/scripts/confluence_write_page.sh create <space_key> <title> <body_file>`
    - `update`: `skills/scripts/confluence_write_page.sh update <page_id> <title_or_dash> <body_file>`
 4. Return a concise summary first, then key fields (`id`, `title`, `version`, `url`).
+
+## Output Contract
+- `read`: Return page title, space, version number, and page URL. Then present body content as readable text (convert storage format to plain summary).
+- `create`: Return the new page ID, title, and URL.
+- `update`: Return the updated page ID, new version number, and URL.
+
+## Guardrails
+- Never expose raw API tokens in output.
+- For `update`, always fetch current version first to avoid version conflicts.
+- For `create` and `update`, confirm the body content with the user before executing the write.
+- Do not delete pages; this skill only supports read/create/update.
 
 ## Templates
 - `skills/confluence-page-manager/templates/technical-solution.storage`

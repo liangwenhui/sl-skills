@@ -5,6 +5,9 @@ description: Review Bitbucket pull requests and post PR comments via Bitbucket A
 
 # Bitbucket PR Reviewer
 
+## Goal
+Review Bitbucket pull requests by fetching PR metadata and diff, then produce a structured code review with actionable findings.
+
 ## Inputs
 - `workspace`: Bitbucket workspace id
 - `repo_slug`: repository slug
@@ -38,3 +41,29 @@ Fallback order for token:
    - Run `skills/scripts/bitbucket_get_pr_diff.sh <workspace> <repo_slug> <pr_id>`
 4. For `comment`:
    - Run `skills/scripts/bitbucket_post_pr_comment.sh <workspace> <repo_slug> <pr_id> <comment_file>`
+
+## Output Contract
+When completing a review, respond in this format:
+
+```
+[<AI-model> review][✅/❌ LGTM]
+- high: <issue description>
+  `path/to/file.rb:42` `some_method(arg)`
+- medium: <issue description>
+  `path/to/file.rb:87` `if condition && other`
+- low: <issue description>
+  `path/to/file.rb:120` `# TODO: ...`
+
+Summary: <brief overall assessment>
+```
+
+Rules:
+- Each issue must include source reference: `path:line_number` and a one-line code snippet.
+- Group issues by severity level: high > medium > low.
+- End with a brief summary of the overall PR quality and key risks.
+
+## Guardrails
+- Never expose raw API tokens in output.
+- If diff is excessively large, focus review on high-risk files (business logic, security, data migration) and note skipped files.
+- Do not approve or merge PRs; this skill only reviews and comments.
+- When posting comments, confirm content with the user before executing.
